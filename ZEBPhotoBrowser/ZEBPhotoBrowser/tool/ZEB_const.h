@@ -16,4 +16,10 @@
 #define kScreenMidX CGRectGetMaxX(kScreenRect)
 #define kScreenMidY CGRectGetMaxY(kScreenRect)
 
+#define filePath(fileName)  NSString  *filepath = [[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource: ofType:nil]
+
+#define isGifURL(Url) [Url hasSuffix:@"gif"] && [dict[@"thumbnailUrl"] hasPrefix:@"http"] || [dict[@"thumbnailUrl"] hasPrefix:@"https"]
+
+#define isGifPicture(fileName) [fileName hasSuffix:@"gif"]
+
 #endif

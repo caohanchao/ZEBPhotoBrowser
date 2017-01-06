@@ -22,4 +22,5 @@
 
 @property (nonatomic, assign) BOOL isDownload; // 原图是否被下载
 
+@property (nonatomic, assign) BOOL isGif; //是否是gif图
 @end

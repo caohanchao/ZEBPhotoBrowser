@@ -10,6 +10,8 @@
 #import "PhotoCell.h"
 #import "ZEBPhotoBrowser.h"
 #import <UIImageView+WebCache.h>
+#import <UIImage+GIF.h>
+#import "ZEB_const.h"
 
 @interface ViewController ()<UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate>
 {
@@ -53,8 +55,23 @@
         cell.imageView.image = self.images[indexPath.row];
     }
     else {
+//        NSString *gif = @"gif";
         NSDictionary *dict = _URLStrings[indexPath.row];
-        [cell.imageView sd_setImageWithURL:dict[@"thumbnailUrl"]];
+        NSString *url =dict[@"thumbnailUrl"];
+        if (isGifPicture(url)) {
+            if (isGifURL(url)) {
+//                UIImage * image = [UIImage sd_animatedGIFNamed:<#(NSString *)#>]
+            } else {
+//                NSString  *filepath = [[NSBundle bundleWithPath:[[NSBundle mainBundle] bundlePath]] pathForResource:url ofType:nil];
+//                NSData *data = [NSData dataWithContentsOfFile:filepath];
+                cell.imageView.image = [UIImage sd_animatedGIFNamed:[[url componentsSeparatedByString:@"."] firstObject]];
+            }
+            
+        }else {
+            
+            [cell.imageView sd_setImageWithURL:dict[@"thumbnailUrl"]];
+        }
+        
     }
     
     return cell;
@@ -100,7 +117,7 @@
 //            
 //            [urlS addObject:linkurl];
 //        }
-        NSArray *arr = @[@"http://112.74.129.54/tax00/M00/03/00/QUIPAFhrFr2AGq9gAHpmYv-oGuI491.JPG?type=1&width=10&height=10&size=8021602",@"http://112.74.129.54/tax00/M00/03/00/QUIPAFhrFr2AGq9gAHpmYv-oGuI491.JPG?type=1&width=10&height=10&size=8021602"];
+        NSArray *arr = @[@"http://112.74.129.54/tax00/M00/03/00/QUIPAFhrFr2AGq9gAHpmYv-oGuI491.JPG?type=1&width=10&height=10&size=8021602",@"http://112.74.129.54/tax00/M00/03/00/QUIPAFhrFr2AGq9gAHpmYv-oGuI491.JPG?type=1&width=10&height=10&size=8021602",@"qqqq.gif"];
         [_URLStrings addObjectsFromArray:[self getArray:arr]];
      [self.collectionView reloadData];
 

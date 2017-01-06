@@ -8,6 +8,7 @@
 
 #import "Photo.h"
 #import <UIImageView+WebCache.h>
+#import "ZEB_const.h"
 
 @implementation Photo
 
@@ -18,6 +19,13 @@
         _original = YES;
     }
     _isDownload = [self hasDownLoad];
+}
+
+- (void)setThumbnailUrl:(NSString *)thumbnailUrl {
+    _thumbnailUrl = thumbnailUrl;
+    if (isGifPicture(_thumbnailUrl)) {
+        _isGif = YES;
+    }
 }
 
 

@@ -12,7 +12,7 @@
 #import "ZEBToast.h"
 #import <UIImageView+WebCache.h>
 #import "Photo.h"
-
+#import <UIImage+GIF.h>
 @interface ZEBPhotoBrowser () <UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ZEBPhotoBrowserCellDelegate> {
     CGRect _endTempFrame;
     NSInteger _currentPage;
@@ -144,7 +144,12 @@
             url = [NSURL URLWithString:photo.thumbnailUrl];
         }
         if (indexPath.row != _index) {
-            [cell.imageView sd_setImageWithURL:url placeholderImage:_placeholderImage];
+            if (photo.isGif) {
+                cell.imageView.image = [UIImage sd_animatedGIFNamed:[[cell.photo.thumbnailUrl componentsSeparatedByString:@".gif"] firstObject]];
+            } else {
+                [cell.imageView sd_setImageWithURL:url placeholderImage:_placeholderImage];
+            }
+            
         }
         else {
             UIImage *placeHolder = _tmpImageView.image;
@@ -188,7 +193,12 @@
     ZEBPhotoBrowserCell *cell = (ZEBPhotoBrowserCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
     if (cell.photo.original) {
         
+    } else {
+        if (cell.photo.isGif) {
+            cell.imageView.image = [UIImage sd_animatedGIFNamed:[[cell.photo.thumbnailUrl componentsSeparatedByString:@".gif"] firstObject]];
+        }
     }
+    
     if (cell.btnShow) {
       [cell showOriginalPhotoButton];
     }
@@ -446,6 +456,7 @@
             photo.thumbnailUrl = parm[@"thumbnailUrl"];
             photo.originalUrl = parm[@"originalUrl"];
             photo.size = parm[@"size"];
+            
             [self.URLStrings addObject:photo];
         }else {
             NSLog(@"出错了，这里需要一个字典!");

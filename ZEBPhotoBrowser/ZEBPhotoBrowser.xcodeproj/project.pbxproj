@@ -22,6 +22,7 @@
 		93593D851E1E5AC500E94869 /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 93593D801E1E5AC500E94869 /* UIView+frame.m */; };
 		93593D861E1E5AC500E94869 /* ZEBToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 93593D831E1E5AC500E94869 /* ZEBToast.m */; };
 		93593D891E1E5AD300E94869 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93593D881E1E5AD300E94869 /* PhotoCell.m */; };
+		EA57225C1E1F904700212C12 /* qqqq.gif in Resources */ = {isa = PBXBuildFile; fileRef = EA57225B1E1F904700212C12 /* qqqq.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		93593D831E1E5AC500E94869 /* ZEBToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEBToast.m; sourceTree = "<group>"; };
 		93593D871E1E5AD300E94869 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
 		93593D881E1E5AD300E94869 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		EA57225B1E1F904700212C12 /* qqqq.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = qqqq.gif; sourceTree = "<group>"; };
 		FC031424846514A3DA521FB3 /* libPods-ZEBPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZEBPhotoBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -135,6 +137,7 @@
 				93593D051E1E5A0F00E94869 /* AppDelegate.m */,
 				93593D341E1E5A3600E94869 /* ViewController.h */,
 				93593D351E1E5A3600E94869 /* ViewController.m */,
+				EA57225B1E1F904700212C12 /* qqqq.gif */,
 				93593D361E1E5A3600E94869 /* Main.storyboard */,
 				93593D0D1E1E5A0F00E94869 /* Assets.xcassets */,
 				93593D0F1E1E5A0F00E94869 /* LaunchScreen.storyboard */,
@@ -322,6 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA57225C1E1F904700212C12 /* qqqq.gif in Resources */,
 				93593D381E1E5A3600E94869 /* Main.storyboard in Resources */,
 				93593D111E1E5A0F00E94869 /* LaunchScreen.storyboard in Resources */,
 				93593D0E1E1E5A0F00E94869 /* Assets.xcassets in Resources */,
