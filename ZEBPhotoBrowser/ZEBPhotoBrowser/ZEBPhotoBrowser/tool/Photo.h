@@ -7,6 +7,7 @@
 //  图片model
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Photo : NSObject
 
@@ -23,4 +24,8 @@
 @property (nonatomic, assign) BOOL isDownload; // 原图是否被下载
 
 @property (nonatomic, assign) BOOL isGif; //是否是gif图
+
+@property (nonatomic, weak) UIImage *image; // 图片
+
+
 @end

@@ -133,6 +133,9 @@
         Photo *photo = self.URLStrings[indexPath.row];
         cell.photo = photo;
         cell.delegate = self;
+        if (photo.image) {
+            cell.imageView.image = photo.image;
+        }else {
         NSURL *url = nil;
         if (photo.original) {
             if (photo.isDownload) {
@@ -166,6 +169,7 @@
                 }
                 
             }];
+        }
         }
     }
     else if (self.images) {
@@ -320,13 +324,16 @@
     
     if (self.URLStrings.count>0 && !self.images) {
         Photo *photo = self.URLStrings[_index];
-        
+        if (photo.image) {
+            _imageDidLoaded = YES;
+        }else {
         NSString *key = [self.shareManager cacheKeyForURL:[NSURL URLWithString:photo.thumbnailUrl]];
         UIImage *image = [[self.shareManager imageCache] imageFromMemoryCacheForKey:key];
         if (image) {
             image = [[self.shareManager imageCache] imageFromDiskCacheForKey:key];
         }
         _imageDidLoaded = image != nil;
+        }
     }
     [self.collectionView setContentOffset:CGPointMake(kScreenWidth * index,0) animated:NO];
     
@@ -434,6 +441,7 @@
            photo.isDownload = YES;
            [cell hideOriginalPhotoButton];
           [self.collectionView reloadData];
+          self.downLoadCompleteBlock(image);
         }
     }];
 }
@@ -449,17 +457,21 @@
 }
 - (void)initTZEBmbnailModel {
     [self.URLStrings removeAllObjects];
-    for (id dict in self.dataArray) {
-        if ([dict isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *parm = (NSDictionary *)dict;
+    for (id what in self.dataArray) {
+        if ([what isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *parm = (NSDictionary *)what;
             Photo *photo = [[Photo alloc] init];
             photo.thumbnailUrl = parm[@"thumbnailUrl"];
             photo.originalUrl = parm[@"originalUrl"];
             photo.size = parm[@"size"];
             
             [self.URLStrings addObject:photo];
+        }else if ([what isKindOfClass:[UIImage class]]){
+            Photo *photo = [[Photo alloc] init];
+            photo.image = (UIImage *)what;
+            [self.URLStrings addObject:photo];
         }else {
-            NSLog(@"出错了，这里需要一个字典!");
+            NSLog(@"出错了，这里需要一个字典或者image!");
         }
     }
     [self.collectionView reloadData];
